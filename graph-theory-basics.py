@@ -1,5 +1,8 @@
-#return: maximum grade of a node, number of loops, boolean representing if there are parallel edges.
 def get_graph_info(adj_list):
+    """return: maximum grade of a node,
+    number of loops,
+    boolean representing if there are parallel edges.
+    """
     grades = {}
     loops = 0
     parallel_edges = False
@@ -15,6 +18,6 @@ def get_graph_info(adj_list):
         if (not parallel_edges):
             for j in range(i + 1, len(adj_list)):
                 other_edge = adj_list[j]
-                if ((edge == other_edge) or (edge[0] == other_edge[1] and edge[1] == other_edge[0])):
+                if (edge == other_edge or edge[::-1] == other_edge):
                     parallel_edges = True
     return max(grades.values()), loops, parallel_edges

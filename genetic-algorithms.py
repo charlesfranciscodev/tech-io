@@ -1,23 +1,5 @@
 import random
 import string
-import sys
-
-alphabet = string.ascii_letters + " !'."
-
-def get_answer():
-    return "IQlCqnWXVoVDDRFKFevaFzxmUxTxONwlLSwfkxmG"
-
-def is_answer(chrom):
-    return chrom == get_answer()
-
-def get_mean_score(population):
-    total_score = 0
-    for chrom in population:
-        total_score += get_score(chrom)
-    return total_score
-
-def get_letter():
-    return random.choice(alphabet)
 
 def create_chromosome(size):
     chrom = ""
@@ -70,7 +52,6 @@ def mutation(chrom):
     mutated_chrom = chrom[:random_index] + get_letter() + chrom[random_index + 1:]
     return mutated_chrom
 
-# Algorithm
 def create_population(pop_size, chrom_size):
     population = []
     for i in range(0, pop_size):
@@ -109,8 +90,6 @@ def algorithm():
     while not answers:
         # create the next generation
         population = generation(population)
-        # display the average score of the population (watch it improve)
-        # print(get_mean_score(population), file=sys.stderr)
         # check if a solution has been found
         for chrom in population:
             if is_answer(chrom):
@@ -118,5 +97,3 @@ def algorithm():
     
     # print the solution
     print(answers[0])
-
-algorithm()
